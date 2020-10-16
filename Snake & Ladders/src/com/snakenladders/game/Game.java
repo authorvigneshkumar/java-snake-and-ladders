@@ -11,7 +11,6 @@ import com.snakenladders.board.BoardUtils;
 public final class Game {
 	int numOfPlayers, numOfBots = 0;
 	boolean wantsBot;
-	boolean exceptionCaught = false;
 	String name;
 	List<Player> players = new ArrayList<Player>();
 	List<String> names = new ArrayList<String>();
@@ -38,13 +37,14 @@ public final class Game {
 			try {
 				System.out.println("Alright, how many players are there" + (wantsBot ? ", other than the bots?" : "?"));
 				numOfPlayers = sc.nextInt();
+				break;
 			}
 
 			catch (InputMismatchException e) {
-				System.out.println("Please enter correctly.");
-				exceptionCaught = true;
+				System.out.print("Please enter correctly. ");
+				sc.nextLine();
 			}
-		} while (exceptionCaught);
+		} while (true);
 	}
 
 	private void botProgrammer() {
